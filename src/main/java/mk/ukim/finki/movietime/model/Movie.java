@@ -16,8 +16,7 @@ public class Movie {
   private String name;
   private String shortDescription;
   private String description;
-  private int runtime;
+  private String runtime;
   private Director director;
-  private String directorLabel;
   private List<String> starring;
 }

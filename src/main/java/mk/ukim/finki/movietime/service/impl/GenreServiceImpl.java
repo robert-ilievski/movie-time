@@ -24,12 +24,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static mk.ukim.finki.movietime.model.prefixes.Prefixes.DBO;
 import static mk.ukim.finki.movietime.model.prefixes.Prefixes.DBR;
 import static mk.ukim.finki.movietime.model.prefixes.Prefixes.RDF;
-import static mk.ukim.finki.movietime.model.prefixes.Prefixes.RESOURCE_URL;
 import static mk.ukim.finki.movietime.model.prefixes.Prefixes.RDFS;
-import static mk.ukim.finki.movietime.model.prefixes.Prefixes.DBO;
 import static mk.ukim.finki.movietime.model.prefixes.Prefixes.SCHEMA;
+import static mk.ukim.finki.movietime.model.prefixes.Prefixes.SPARQL_ENDPOINT;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class GenreServiceImpl implements GenreService {
 
   @Override
   public Genre getGenre(String name) {
-    String genreResourceUrl = RESOURCE_URL.replace("{resourceName}", name);
+    String genreResourceUrl = DBR + name;
     Genre genreModel = new Genre();
 
     Model model = ModelFactory.createDefaultModel();
@@ -57,11 +57,11 @@ public class GenreServiceImpl implements GenreService {
    * @param genreModel    genre model class.
    */
   private static void createGenreDataModel(Resource genreResource, Genre genreModel) {
-    genreModel.setName(genreResource.getProperty(
-        new PropertyImpl(RDFS + "label"), "en")
+    genreModel.setName(genreResource.getProperty(new PropertyImpl(RDFS + "label"), "en") == null ? null
+        : genreResource.getProperty(new PropertyImpl(RDFS + "label"), "en")
         .getObject().toString().replace("@en", "s"));
-    genreModel.setDescription(genreResource.getProperty(
-        new PropertyImpl(DBO + "abstract"), "en")
+    genreModel.setDescription(genreResource.getProperty(new PropertyImpl(DBO + "abstract"), "en") == null ? null
+        : genreResource.getProperty(new PropertyImpl(DBO + "abstract"), "en")
         .getObject().toString().replace("@en", ""));
   }
 
@@ -89,7 +89,7 @@ public class GenreServiceImpl implements GenreService {
 
     Query query = QueryFactory.create(queryString);
 
-    QueryExecution qe = QueryExecutionFactory.sparqlService("https://dbpedia.org/sparql", query);
+    QueryExecution qe = QueryExecutionFactory.sparqlService(SPARQL_ENDPOINT, query);
     ResultSet results = qe.execSelect();
 
     while (results.hasNext()) {
@@ -101,14 +101,16 @@ public class GenreServiceImpl implements GenreService {
       while (varIterator.hasNext()) {
         Var queryColumn = varIterator.next();
         String queryColumnValue = binding.get(queryColumn).toString();
-        if (queryColumnValue.contains("http://dbpedia.org/resource/")) {
+        if (queryColumnValue.contains(DBR)) {
           String movieLabel = queryColumnValue.substring(queryColumnValue.lastIndexOf("/") + 1);
           String movieName = movieLabel.replace("_", " ");
 
           movie.setLabel(movieLabel);
           movie.setName(movieName);
         } else {
-          movie.setShortDescription(queryColumnValue.replace("@en", ""));
+          movie.setShortDescription(queryColumnValue
+              .replace("@en", "")
+              .replace("\"", ""));
         }
       }
       movies.add(movie);
