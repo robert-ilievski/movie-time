@@ -5,15 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Director {
+  private String label;
   private String name;
   private String description;
   private String birthDate;
-  private Map<String, String> movies;
+  private List<Movie> directedMovies;
 }

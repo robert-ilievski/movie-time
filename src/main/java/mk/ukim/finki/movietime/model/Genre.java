@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +14,5 @@ import java.util.Map;
 public class Genre {
   private String name;
   private String description;
-  private Map<String, String> movies;
+  private List<Movie> movies;
 }

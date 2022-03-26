@@ -12,9 +12,12 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Movie {
+  private String label;
   private String name;
+  private String shortDescription;
   private String description;
   private int runtime;
   private Director director;
+  private String directorLabel;
   private List<String> starring;
 }
