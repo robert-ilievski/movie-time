@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -15,5 +15,5 @@ public class Director {
   private String name;
   private String description;
   private String birthDate;
-  private List<Movie> movies;
+  private Map<String, String> movies;
 }
