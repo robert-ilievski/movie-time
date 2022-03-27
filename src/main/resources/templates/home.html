@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{'/home'}">Home</a>
+    </div>
+</nav>
+<div class="container pt-5">
+    <h2>Movie genres</h2>
+    <div class="row">
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Action films
+                </h4>
+                <div class="card-body">
+                    List of action films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Action_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Comedy films
+                </h4>
+                <div class="card-body">
+                    List of comedy films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Comedy_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Horror films
+                </h4>
+                <div class="card-body">
+                    List of horror films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Horror_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Thriller films
+                </h4>
+                <div class="card-body">
+                    List of thriller films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Thriller_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Science fiction films
+                </h4>
+                <div class="card-body">
+                    List of science fiction films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Science_fiction_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <div class="card">
+                <h4 class="card-title text-center pt-2">
+                    Romance films
+                </h4>
+                <div class="card-body">
+                    List of romance films.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary"
+                       th:href="@{'/genre/{genreName}' (genreName = 'Romance_film')}">SEE MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

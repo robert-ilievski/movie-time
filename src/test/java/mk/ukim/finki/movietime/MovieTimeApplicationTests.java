@@ -1,14 +1,13 @@
 package mk.ukim.finki.movietime;
 
 import mk.ukim.finki.movietime.model.Genre;
+import mk.ukim.finki.movietime.model.Movie;
 import mk.ukim.finki.movietime.service.impl.GenreServiceImpl;
 import mk.ukim.finki.movietime.service.impl.MovieServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.ArrayList;
 
 @ExtendWith(MockitoExtension.class)
 class MovieTimeApplicationTests {
@@ -27,10 +26,7 @@ class MovieTimeApplicationTests {
 
   @Test
   public void testMovie() {
-    Genre genreModel = Genre.builder()
-        .name("Action films")
-        .description("action films description")
-        .movies(new ArrayList<>())
-        .build();
+    Movie movie = movieService.getMovieDetails("The_Island_(2005_film)");
+    System.out.println("test");
   }
 }
