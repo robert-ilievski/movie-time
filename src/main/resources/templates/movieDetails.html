@@ -47,7 +47,11 @@
         <div class="col-md-4">
             <ul>
                 <div th:each="movie: ${movie.director.directedMovies}">
-                    <li th:text="${movie.name}"></li>
+                    <li>
+                        <a th:href="@{'/movies/{movieLabel}' (movieLabel = ${movie.label})}"
+                           th:text="${movie.name}">
+                        </a>
+                    </li>
                 </div>
             </ul>
         </div>

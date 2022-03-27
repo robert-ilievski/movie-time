@@ -145,11 +145,12 @@ public class MovieServiceImpl implements MovieService {
         QuerySolution querySolution = results.nextSolution();
         Binding binding = ((ResultBinding) querySolution).getBinding();
 
-        String movieName = binding.toString()
+        String movieLabel = binding.toString()
             .substring(binding.toString().lastIndexOf("/"), binding.toString().lastIndexOf(">"))
-            .replace("/", "")
-            .replace("_", " ");
+            .replace("/", "");
+        String movieName = movieLabel.replace("_", " ");
 
+        movie.setLabel(movieLabel);
         movie.setName(movieName);
         directedMovies.add(movie);
       }
