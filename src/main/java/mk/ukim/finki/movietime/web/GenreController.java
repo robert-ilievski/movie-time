@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/genre")
+@RequestMapping("/genres")
 @RequiredArgsConstructor
 public class GenreController {
 
@@ -18,8 +18,11 @@ public class GenreController {
 
   @GetMapping("/{genreName}")
   public String getGenre(Model model, @PathVariable String genreName) {
-    Genre genre = genreService.getGenre(genreName);
-    model.addAttribute("genre", genre);
-    return "genrePage";
+    if (genreName != null) {
+      Genre genre = genreService.getGenre(genreName);
+      model.addAttribute("genre", genre);
+      return "genrePage";
+    }
+    return "home";
   }
 }

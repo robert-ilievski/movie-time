@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -20,6 +21,30 @@
 </nav>
 <div class="container pt-5">
     <h2 th:text="${genre.name}"></h2>
+    <p class="py-3" style="text-align: justify" th:text="${genre.description}"></p>
+    <section>
+        <div th:each="movie: ${genre.movies}" class="py-3">
+            <div class="card">
+                <div class="row py-3">
+                    <div class="col-md-4">
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400"
+                             class="w-100">
+                    </div>
+                    <div class="col-md-8 px-3">
+                        <div class="card-block px-3" style="text-align: justify">
+                            <h4 th:text="${movie.name}" class="card-title"></h4>
+                            <p th:text="${movie.shortDescription}" class="card-text"></p>
+                            <a th:href="@{'/movies/{movieLabel}' (movieLabel = ${movie.label})}"
+                               class="btn btn-primary">
+                                READ MORE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
 </div>
 </body>
 </html>

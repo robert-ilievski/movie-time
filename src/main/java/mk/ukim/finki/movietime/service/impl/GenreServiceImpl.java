@@ -57,10 +57,10 @@ public class GenreServiceImpl implements GenreService {
    * @param genreModel    genre model class.
    */
   private static void createGenreDataModel(Resource genreResource, Genre genreModel) {
-    genreModel.setName(genreResource.getProperty(new PropertyImpl(RDFS + "label"), "en") == null ? null
+    genreModel.setName(genreResource.getProperty(new PropertyImpl(RDFS + "label"), "en") == null ? "N/A"
         : genreResource.getProperty(new PropertyImpl(RDFS + "label"), "en")
         .getObject().toString().replace("@en", "s"));
-    genreModel.setDescription(genreResource.getProperty(new PropertyImpl(DBO + "abstract"), "en") == null ? null
+    genreModel.setDescription(genreResource.getProperty(new PropertyImpl(DBO + "abstract"), "en") == null ? "N/A"
         : genreResource.getProperty(new PropertyImpl(DBO + "abstract"), "en")
         .getObject().toString().replace("@en", ""));
   }
